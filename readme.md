@@ -61,3 +61,34 @@ namespace aspnetcore_2x_content_negotiation
 dotnet run
 ```
 * [http://localhost:5000/api/values](http://localhost:5000/api/values) to verify api response
+```son
+["string 1","string 2","string 3"]
+```
+
+* Updated `services.AddMvc()` as below
+```csharp
+services.AddMvc(config => {
+      config.RespectBrowserAcceptHeader = true;
+      config.InputFormatters.Add(new XmlSerializerInputFormatter());
+      config.OutputFormatters.Add(new XmlSerializerOutputFormatter());
+});
+```
+* Verify content negotiations
+1. Receive xml 
+      * Using Fiddler or Postman naviaget to [http://localhost:5000/api/values](http://localhost:5000/api/values)
+      * Add `Accept` header with value `text/xml`
+            * response
+            ```xml
+            <ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                  <string>string 1</string>
+                  <string>string 2</string>
+                  <string>string 3</string>
+            </ArrayOfString>
+            ```
+2. Receive JSON 
+      * Using Fiddler or Postman naviaget to [http://localhost:5000/api/values](http://localhost:5000/api/values)
+      * Add `Accept` header with value `text/json`
+            * response
+            ```json
+                  ["string 1","string 2","string 3"]
+            ```
