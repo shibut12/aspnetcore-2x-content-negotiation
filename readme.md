@@ -77,7 +77,9 @@ services.AddMvc(config => {
 1. Receive xml 
       * Using Fiddler or Postman naviaget to [http://localhost:5000/api/values](http://localhost:5000/api/values)
       * Add `Accept` header with value `text/xml`
+            
             * response
+
             ```xml
             <ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
                   <string>string 1</string>
@@ -88,7 +90,9 @@ services.AddMvc(config => {
 2. Receive JSON 
       * Using Fiddler or Postman naviaget to [http://localhost:5000/api/values](http://localhost:5000/api/values)
       * Add `Accept` header with value `text/json`
+            
             * response
+
             ```json
                   ["string 1","string 2","string 3"]
             ```
